@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>바이너리 시계 만들기</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+    #root { padding: 50px; text-align: center;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const root = document.getElementById('root');
+    const z2 = (v) => {
+        const s = '00' + v
+        return s.substr(s.length - 2, 2)
+    }
+  
+    setInterval(() => {
+      const date = new Date()
+      const hour = date.getHours()
+      const min = date.getMinutes()
+      const sec = date.getSeconds()
+      const binStr = z2(hour) +  z2(min) + z2(sec) // 060400
+      let lines = []
+      const style0 = {color: 'brown', fontSize: 40}
+      const style1 = {color: 'red', fontSize: 40}
+      
+      for (let i = 0; i < binStr.length; i++) {
+        const v = parseInt(binStr.substr(i, 1)) // 0, 6, 0, 4, 0, 0
+        const bin = '0000' + v.toString(2)
+        const bin8 = bin.substr(bin.length - 4, 4);
+        for (let j=0; j < bin8.length; j++) {
+          if (bin8.substr(j, 1) == '0') {
+            lines.push(<span style={style0}>○</span>)
+          } else {
+            lines.push(<span style={style1}>●</span>)
+          }
+        }
+        lines.push(<br />)
+      }
+      
+      const element = <div>{lines}</div>
+      ReactDOM.render(element, root)
+      
+      // const string = `${hour}:${min}:${sec}`;
+      // root.innerHTML = `<h1>${string}</h2>`;
+    }, 1000);
+  </script>
+</body>
+</html>
