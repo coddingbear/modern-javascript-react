@@ -17,7 +17,7 @@ class SimpleForm extends React.Component {
           value={this.state.value} 
           onChange={ (e) => {
             const curValue = e.target.value     
-            const newValue = curValue.replace(/[^0-9]/g, '')
+            const newValue = curValue.replace(/[^0-9]/g, '') // 숫자만 입력
             this.setState({ value: newValue })
           }} />
         <button type="submit">전송</button>
