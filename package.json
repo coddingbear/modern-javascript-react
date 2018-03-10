@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start" : "serve -p 3000",
     "watch": "babel src -d dest -w --compact=true --source-maps",
     "compile": "babel src -d dest --compact=true --source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"

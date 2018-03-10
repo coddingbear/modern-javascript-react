@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리액트: 이벤트</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script type="text/babel">   
+    // 상태를 가진 컨포넌트를 정의 ---(#1)
+    class CheckBox extends React.Component {
+    	// 생성자 ---(#2)
+    	constructor(props) {
+      	super(props)
+        // 상태를 초기화 합니다.
+        this.state = {
+        	checked: false
+        }
+        // 헨들러 bind(this) 처리
+        this.clickHandler = this.clickHandler.bind(this)
+      }
+      // 클릭했을 때의 이벤트 처리 정의 ---(#5)
+      clickHandler (e) {
+      	const newValue = !this.state.checked
+          this.setState({
+          	checked: newValue
+          })
+      }
+    	render() {
+      	// 체크 되지 않았을 때의 상태 ---(#3)
+        let mark = '□'
+        let bstyle = {
+        	fontWeight: 'normal'
+        }
+        // 체크되어 있는가 확인 ---(#4)
+        if (this.state.checked) {
+        	mark= '■'
+          bstyle = {
+          	fontWeight: 'bold'
+          }
+        }
+        
+        // 렌더링할 내용을 반환합니다. ---(#6)
+      	return (
+        	<div onClick={this.clickHandler} style={bstyle}>
+          	{mark} {this.props.label}
+          </div>
+        )
+      }
+    }
+    // 리액트로 DOM의 내용을 변경 ---(#7)
+    const dom = (
+    	<div>
+      	<CheckBox label="Apple" />
+        <CheckBox label="Banana" />
+        <CheckBox label="Orange" />
+        <CheckBox label="Mango" />
+      </div>
+    )
+    
+    ReactDOM.render(dom, document.getElementById('root'))
+  </script>
+</body>
+</html>
