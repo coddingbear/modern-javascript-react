@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>컴포넌트 라이프사이클</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+    #root { margin: 50px auto; padding: 20px; background-color: #e1e1e1; border-radius: 10px; text-align: center;}
+    #root button { margin-right: 20px; padding: 10px; font-size: 20px; border: 2px solid #ccc; border-radius: 10px; outline: 0; cursor: pointer;}
+    #root>div>button:first-child { color: blue; border-color: blue; }
+    #root>div>button:nth-child(2) { color: red; border-color: red; }
+    .fa { margin-right: 10px; margin-left: 10px;}
+    .likes {padding: 10px; text-transform: uppercase;}
+    .likes span { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="./LifeCycle.js"></script>
+  <script type="text/babel">
+    const element = <HelloReact />
+    ReactDOM.render(element, document.getElementById('root'))
+  </script>
+</body>
+</html>
