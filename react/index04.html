@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리액트: 클래스 컴포넌트</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script type="text/babel">
+  	// 클래스로 컴포넌트 만들기
+  	class TestA extends React.Component {
+    	render() {
+      	return <h1 style={{color: this.props.color}}>{this.props.children}</h1>
+      }
+    }
+    // 함수로 컴포넌트 만들기
+    function TestB (props) {
+    	return <h1 style={{color: props.color}}>{props.children}</h1>
+    }
+    const TestC = function(props) {
+    	return <h1 style={{color: props.color}}>{props.children}</h1>
+    }
+    // 화살표 함수로 컴포넌트 만들기
+    const TestD = (props) => { 
+    	return <h1 style={{color: props.color}}>{props.children}</h1>
+    }
+    
+    const element = (
+    	<div>
+      	<TestA color="blue">Hello Component</TestA>
+        <TestB color="green">Hello Component</TestB>
+    		<TestC color="olive">Hello Component</TestC>
+        <TestD color="red">Hello Component</TestD>
+
+      </div>
+    )
+    ReactDOM.render(element, root)
+  </script>
+</body>
+</html>
