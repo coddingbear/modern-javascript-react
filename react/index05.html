@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리액트: 클래스 컴포넌트</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script type="text/babel">   
+    // 클래스로 컴포넌트 만들기
+    class Card extends React.Component {    	
+    	render () {
+      	const cardStyle = {
+          width: 500,
+          margin: "30px auto",
+          padding: 20,
+          border: "1px solid #ccc",
+          borderRadius: 10
+        }
+      	return (
+          <div style={cardStyle}>
+            <span>2018년 01월 30일 화요일</span>
+            <hr />
+            <span>{this.props.author}</span>
+            {this.props.children}
+          </div>
+        )
+      }
+    }    
+    
+  	const root = document.getElementById('root');
+    const elements = []
+    for(let index = 1; index < 10; index++) {
+    	elements.push(
+        <Card author="Noname" key={index}>
+          <h1>Lorem ipsum dolor sit amet</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum rerum magnam, 
+          porro eveniet voluptatibus accusamus dignissimos repellat, id necessitatibus officiis quibusdam ipsum, 
+          assumenda rem numquam. Inventore, error praesentium rerum ratione?</p>
+        </Card>)
+    }
+    const element = <div>{elements}</div>   
+    ReactDOM.render(element, root)
+  </script>
+</body>
+</html>
