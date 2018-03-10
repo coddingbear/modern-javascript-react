@@ -12,17 +12,40 @@
 </head>
 <body>
   <div id="root"></div>
+  
   <script type="text/babel">
-  	// Component : 부품 - 함수,  클래스
-    
+   
     // 함수로 컴포넌트 만들기
-    function Custom (props) {
-    	return <h1 style={{color: props.color }}>{props.title} {props.children}</h1>
+    function Card (props) {
+    	const cardStyle = {
+      	width: 500,
+        margin: "30px auto",
+        padding: 20,
+      	border: "1px solid #ccc",
+        borderRadius: 10
+      }
+    	return (
+      	<div style={cardStyle}>
+        	<span>2018년 01월 30일 화요일</span>
+          <hr />
+          <span>{props.author}</span>
+          {props.children}
+        </div>
+      )
     }
     
-  	const root = document.getElementById('root');  
-    const element = <Custom title="Welcome" color="red">React World</Custom>    
-       
+  	const root = document.getElementById('root');
+    const elements = []
+    for(let index = 1; index < 10; index++) {
+    	elements.push(
+        <Card author="Noname" key={index}>
+          <h1>Lorem ipsum dolor sit amet</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum rerum magnam, 
+          porro eveniet voluptatibus accusamus dignissimos repellat, id necessitatibus officiis quibusdam ipsum, 
+          assumenda rem numquam. Inventore, error praesentium rerum ratione?</p>
+        </Card>)
+    }
+    const element = <div>{elements}</div>   
     ReactDOM.render(element, root)
   </script>
 </body>
