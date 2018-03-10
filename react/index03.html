@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리액트: 함수 컴포넌트</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+  	// Component : 부품 - 함수,  클래스
+    
+    // 함수로 컴포넌트 만들기
+    function Custom (props) {
+    	return <h1 style={{color: props.color }}>{props.title} {props.children}</h1>
+    }
+    
+  	const root = document.getElementById('root');  
+    const element = <Custom title="Welcome" color="red">React World</Custom>    
+       
+    ReactDOM.render(element, root)
+  </script>
+</body>
+</html>
